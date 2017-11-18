@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mytest.syscore.daou.mytest.MainActivity">
+
+    <Button
+        android:id="@+id/goCalculator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="계산기"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <Button
+        android:id="@+id/goCalculator2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="숫자계산기"
+        app:layout_constraintStart_toEndOf="@+id/goCalculator"
+        tools:layout_editor_absoluteY="20dp" />
+
+
+</android.support.constraint.ConstraintLayout>
