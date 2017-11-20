@@ -16,10 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".CalCulatorActivity"></activity>
-
-        <activity android:name=".CalculatorNumActivity"></activity>
+        <activity android:name=".CalCulatorActivity" />
+        <activity android:name=".CalculatorNumActivity" />
+        <activity android:name=".PushListActivity" />
+        <activity android:name=".MemberJoinFormActivity"></activity>
     </application>
 
 </manifest>

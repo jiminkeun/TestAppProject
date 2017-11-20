@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -15,7 +16,7 @@ public class CalculatorNumActivity extends AppCompatActivity implements Button.O
 
     String nowCalc = "";        // 현재 연산자
     String nowResult = "";      // 현재 계산결과
-    String nowType = "";        // C: 기호(= 은 다음에 숫자가 더해져야하므로 숫자로 분류됨), N: 숫자
+    String nowType = "";        // 이전 값 타입. C: 기호(= 은 다음에 숫자가 더해져야하므로 숫자로 분류됨), N: 숫자
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,18 +70,22 @@ public class CalculatorNumActivity extends AppCompatActivity implements Button.O
 
         Button btnCancel = (Button) findViewById(R.id.btnCancle);
         btnCancel.setOnClickListener(this);
+
+        // 초기값
+        nowResult = "0";
+        nowType = "N";
     }
 
     @Override
     public void onClick(View v) {
-        EditText resultText = null;
+        TextView resultText = null;
 
         switch (v.getId()) {
             case R.id.btnAdd:
             case R.id.btnSub:
             case R.id.btnMul:
             case R.id.btnDiv:
-                resultText = (EditText) findViewById(R.id.textCalcResult);
+                resultText = (TextView) findViewById(R.id.textCalcResult);
                 // 기존 결과 텍스트 비어있지 않으면 처리
                 if(!resultText.getText().toString().isEmpty()) {
                     // 기존 수식이 존재하면 결과 보여주기
@@ -93,7 +98,7 @@ public class CalculatorNumActivity extends AppCompatActivity implements Button.O
                 //Toast.makeText(this, "현재 nowType:"+nowType, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnEqual:
-                resultText = (EditText) findViewById(R.id.textCalcResult);
+                resultText = (TextView) findViewById(R.id.textCalcResult);
                 //Toast.makeText(this, "현재 nowResult:"+nowResult, Toast.LENGTH_SHORT).show();
                 if(!nowResult.isEmpty()) {
                     resultText.setText(nowResult.toString());
@@ -101,62 +106,70 @@ public class CalculatorNumActivity extends AppCompatActivity implements Button.O
                 }
                 break;
             case R.id.btnCancle:
-                resultText = (EditText) findViewById(R.id.textCalcResult);
+                resultText = (TextView) findViewById(R.id.textCalcResult);
                 nowCalc = "";
-                nowResult = "";
-                nowType = "";
+                nowResult = "0";
+                nowType = "N";
                 resultText.setText("0");
                 break;
             default:        // 숫자일때 append, 이전 버튼 타입이 없을경우(처음 버튼 클릭인 경우)
-                resultText = (EditText) findViewById(R.id.textCalcResult);
-                if(!resultText.getText().toString().isEmpty() && !nowType.toString().isEmpty()) {
+                resultText = (TextView) findViewById(R.id.textCalcResult);
+                String resultTextStr = resultText.getText().toString();     // 결과창 노출값
+                String nowInputStr = v.getTag().toString();                  // 현재 입력값
+
+                if(!resultTextStr.isEmpty() && !nowType.toString().isEmpty()) {
                     //Toast.makeText(this, "현재 nowType:"+nowType+" // 현재 nowCalc:"+nowCalc, Toast.LENGTH_LONG).show();
                     if(nowType.toString().equals("N") ) {           // 숫자타입('=' 포함)
 
-                        // 이전 타입 수식일 경우 현재 선택 숫자를 현재 수식 상태로 계산한다.
+                        // 이전 수식 있을 경우 현재 선택 숫자를 현재 수식 상태로 계산한다. 실시간으로 계산하여 값을 저장한다.
                         switch (nowCalc) {
                             case "add":
-                                //Toast.makeText(this, "이전 nowResult:"+nowResult+" // 현재 클릭 수 :"+v.getTag().toString(), Toast.LENGTH_LONG).show();
-                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) - Integer.parseInt(resultText.getText().toString()) + Integer.parseInt(resultText.getText().toString() + v.getTag().toString()));
+                                //Toast.makeText(this, "이전 nowResult:"+nowResult+" // 현재 클릭 수 :"+nowInputStr, Toast.LENGTH_LONG).show();
+                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) - Integer.parseInt(resultTextStr) + Integer.parseInt(resultTextStr + nowInputStr));
                                 break;
                             case "sub":
-                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) + Integer.parseInt(resultText.getText().toString()) - Integer.parseInt(resultText.getText().toString() + v.getTag().toString()));
+                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) + Integer.parseInt(resultTextStr) - Integer.parseInt(resultTextStr + nowInputStr));
                                 break;
                             case "mul":
-                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) / Integer.parseInt(resultText.getText().toString()) * Integer.parseInt(resultText.getText().toString() + v.getTag().toString()));
+                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) / Integer.parseInt(resultTextStr) * Integer.parseInt(resultTextStr + nowInputStr));
                                 break;
                             case "div":
-                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) * Integer.parseInt(resultText.getText().toString()) / Integer.parseInt(resultText.getText().toString() + v.getTag().toString()));
+                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) * Integer.parseInt(resultTextStr) / Integer.parseInt(resultTextStr + nowInputStr));
                                 break;
                         }
-                        resultText.setText(resultText.getText().toString() + v.getTag().toString());
-                        //Toast.makeText(this, "이후 nowResult:"+nowResult+" // 현재 클릭 수 :"+v.getTag().toString(), Toast.LENGTH_LONG).show();
+                        // 현재 결과창에 0 찍혀있을경우(0 이후 숫자 클릭 상황)
+                        if(resultTextStr.equals("0")) {
+                            resultText.setText(nowInputStr);
+                        }else {
+                            resultText.setText(resultTextStr + nowInputStr);
+                        }
+                        //Toast.makeText(this, "이후 nowResult:"+nowResult+" // 현재 클릭 수 :"+nowInputStr, Toast.LENGTH_LONG).show();
                     }else {                                         // 이전 타입이 수식일 경우 현재 선택 숫자 보여줌.
-                        //nowResult = resultText.getText().toString();
+                        //nowResult = resultTextStr;
 
-                        // 이전 타입 수식일 경우 현재 선택 숫자를 현재 수식 상태로 계산한다.
+                        // 이전 수식 있을 경우 현재 선택 숫자를 현재 수식 상태로 계산한다.
                         switch (nowCalc) {
                             case "add":
-                                //Toast.makeText(this, "이전 nowResult:"+nowResult+" // 현재 클릭 수 :"+v.getTag().toString(), Toast.LENGTH_LONG).show();
-                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) + Integer.parseInt(v.getTag().toString()));
+                                //Toast.makeText(this, "이전 nowResult:"+nowResult+" // 현재 클릭 수 :"+nowInputStr, Toast.LENGTH_LONG).show();
+                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) + Integer.parseInt(nowInputStr));
                                 break;
                             case "sub":
-                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) - Integer.parseInt(v.getTag().toString()));
+                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) - Integer.parseInt(nowInputStr));
                                 break;
                             case "mul":
-                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) * Integer.parseInt(v.getTag().toString()));
+                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) * Integer.parseInt(nowInputStr));
                                 break;
                             case "div":
-                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) / Integer.parseInt(v.getTag().toString()));
+                                nowResult = Integer.toString(Integer.parseInt(nowResult.toString()) / Integer.parseInt(nowInputStr));
                                 break;
                         }
-                        resultText.setText(v.getTag().toString());
+                        resultText.setText(nowInputStr);
 
                         //Toast.makeText(this, "현재 nowResult:"+nowResult, Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
-                    resultText.setText(v.getTag().toString());
+                    resultText.setText(nowInputStr);
 
                     nowResult = resultText.getText().toString();
                 }

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mytest.syscore.daou.mytest.MemberJoinFormActivity">
+
+    <EditText
+        android:id="@+id/editMemberNo"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="번호입력"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textMemberNo"
+        tools:layout_editor_absoluteY="78dp" />
+
+    <EditText
+        android:id="@+id/editMemberBirthday"
+        android:layout_width="210dp"
+        android:layout_height="49dp"
+        android:layout_alignLeft="@+id/editMemberNo"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="생년월일입력"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textMemberBirthday"
+        app:layout_constraintTop_toBottomOf="@+id/editMemberSex" />
+
+    <EditText
+        android:id="@+id/editMemberName"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:layout_alignLeft="@+id/editMemberNo"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="이름입력"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textMemberName"
+        app:layout_constraintTop_toBottomOf="@+id/editMemberNo" />
+
+    <EditText
+        android:id="@+id/editMemberAge"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:layout_alignLeft="@+id/editMemberNo"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="나이입력"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textMemberAge"
+        app:layout_constraintTop_toBottomOf="@+id/editMemberName" />
+
+    <EditText
+        android:id="@+id/editMemberSex"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:layout_alignLeft="@+id/editMemberNo"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="성별입력"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textMemberSex"
+        app:layout_constraintTop_toBottomOf="@+id/editMemberAge" />
+
+    <EditText
+        android:id="@+id/editMemberAddr"
+        android:layout_width="208dp"
+        android:layout_height="49dp"
+        android:layout_alignLeft="@+id/editMemberNo"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="주소입력"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textMemberAddr"
+        app:layout_constraintTop_toBottomOf="@+id/editMemberJob" />
+
+    <EditText
+        android:id="@+id/editMemberJob"
+        android:layout_width="210dp"
+        android:layout_height="49dp"
+        android:layout_alignLeft="@+id/editMemberNo"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="직업입력"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textMemberJob"
+        app:layout_constraintTop_toBottomOf="@+id/editMemberBirthday" />
+
+    <TextView
+        android:id="@+id/textMemberBirthday"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:layout_alignLeft="@+id/editMemberNo"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="생년월일"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textMemberAge"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/textMemberJob"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="직업"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textMemberBirthday"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/textMemberAddr"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="주소"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textMemberJob"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/textMemberSex"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="성별"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textMemberAge"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/textMemberAge"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="나이"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textMemberName"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/textMemberName"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="이름."
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textMemberNo"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/titleMemberJoin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="회원정보등록"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textMemberNo"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="No."
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/titleMemberJoin"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/btnMemberInputSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="등록"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/editMemberAddr"
+        tools:layout_editor_absoluteX="106dp" />
+</android.support.constraint.ConstraintLayout>
