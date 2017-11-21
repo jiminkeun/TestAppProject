@@ -34,7 +34,12 @@ public class PushListActivity extends AppCompatActivity {
                 String dataMemberBirthday = cursor.getString(4);
                 String dataMemberJob = cursor.getString(5);
                 String dataMemberAddr = cursor.getString(6);
+
+
             }
+
+            cursor.close();
+            sqliteDB.close();
 
         }catch (SQLException e) {
             e.printStackTrace();

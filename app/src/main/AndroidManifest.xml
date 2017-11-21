@@ -19,7 +19,9 @@
         <activity android:name=".CalCulatorActivity" />
         <activity android:name=".CalculatorNumActivity" />
         <activity android:name=".PushListActivity" />
-        <activity android:name=".MemberJoinFormActivity"></activity>
+        <activity android:name=".MemberJoinFormActivity" />
+        <activity android:name=".MemberListActivity" />
+        <activity android:name=".PuzzleActivity"></activity>
     </application>
 
 </manifest>
