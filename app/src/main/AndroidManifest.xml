@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalCulatorActivity" />
-        <activity android:name=".CalculatorNumActivity" />
-        <activity android:name=".PushListActivity" />
-        <activity android:name=".MemberJoinFormActivity" />
-        <activity android:name=".MemberListActivity" />
-        <activity android:name=".PuzzleActivity"></activity>
+        <activity android:name=".activity.CalCulatorActivity" />
+        <activity android:name=".activity.CalculatorNumActivity" />
+        <activity android:name=".activity.PushListActivity" />
+        <activity android:name=".activity.MemberJoinFormActivity" />
+        <activity android:name=".activity.MemberListActivity" />
+        <activity android:name=".activity.PuzzleActivity"></activity>
     </application>
 
 </manifest>

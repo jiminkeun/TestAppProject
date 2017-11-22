@@ -1,10 +1,12 @@
-package mytest.syscore.daou.mytest;
+package mytest.syscore.daou.mytest.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import mytest.syscore.daou.mytest.R;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
 
@@ -18,6 +20,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
         Button calculatorButton2 = (Button) findViewById(R.id.goCalculator2);
         calculatorButton2.setOnClickListener(this);
+
+        Button memberListButton = (Button) findViewById(R.id.goMemberList);
+        memberListButton.setOnClickListener(this);
     }
 
     @Override
@@ -30,6 +35,10 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 break;
             case R.id.goCalculator2:
                 intent = new Intent(this, CalculatorNumActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.goMemberList:
+                intent = new Intent(this, MemberListActivity.class);
                 startActivity(intent);
                 break;
         }

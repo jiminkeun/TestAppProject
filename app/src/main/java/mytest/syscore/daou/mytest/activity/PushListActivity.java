@@ -1,10 +1,12 @@
-package mytest.syscore.daou.mytest;
+package mytest.syscore.daou.mytest.activity;
 
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import mytest.syscore.daou.mytest.R;
 
 public class PushListActivity extends AppCompatActivity {
 

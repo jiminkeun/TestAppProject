@@ -1,4 +1,4 @@
-package mytest.syscore.daou.mytest;
+package mytest.syscore.daou.mytest.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import mytest.syscore.daou.mytest.R;
 
 /**
  * Created by daou on 2017-11-18.

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mytest.syscore.daou.mytest.CalCulatorActivity">
+    tools:context="mytest.syscore.daou.mytest.activity.CalCulatorActivity">
 
     <EditText
         android:id="@+id/number1"

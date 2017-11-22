@@ -1,4 +1,4 @@
-package mytest.syscore.daou.mytest;
+package mytest.syscore.daou.mytest.activity;
 
 import android.content.Intent;
 import android.database.SQLException;
@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import mytest.syscore.daou.mytest.R;
 
 public class MemberJoinFormActivity extends AppCompatActivity implements Button.OnClickListener {
 

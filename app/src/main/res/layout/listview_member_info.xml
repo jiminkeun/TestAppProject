@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/customMemberNo"
+        android:layout_weight="1"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:background="#000000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/customMemberName"
+        android:layout_weight="1"
+        android:textSize="15dp"
+        android:textColor="#DADADA"
+        android:background="#232323"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/customMemberAge"
+        android:layout_weight="1"
+        android:textSize="15dp"
+        android:textColor="#B5B5B5"
+        android:background="#454545"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/customMemberSex"
+        android:layout_weight="1"
+        android:textSize="15dp"
+        android:textColor="#939393"
+        android:background="#646464"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/customMemberBirthday"
+        android:layout_weight="1"
+        android:textSize="15dp"
+        android:textColor="#717171"
+        android:background="#898989"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/customMemberJob"
+        android:layout_weight="1"
+        android:textSize="15dp"
+        android:textColor="#494949"
+        android:background="#A5A5A5"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/customMemberAddr"
+        android:layout_weight="1"
+        android:textSize="15dp"
+        android:textColor="#212121"
+        android:background="#CACACA"/>
+
+</LinearLayout>

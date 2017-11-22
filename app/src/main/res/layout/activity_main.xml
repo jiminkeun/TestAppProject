@@ -4,24 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mytest.syscore.daou.mytest.MainActivity">
+    android:maxHeight="50dp"
+    android:layout_marginTop="10dp"
+    tools:context="mytest.syscore.daou.mytest.activity.MainActivity">
 
     <Button
         android:id="@+id/goCalculator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="계산기"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="20dp" />
+        android:text="계산기"/>
 
     <Button
         android:id="@+id/goCalculator2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginLeft="10dp"
         android:text="숫자계산기"
         app:layout_constraintStart_toEndOf="@+id/goCalculator"
-        tools:layout_editor_absoluteY="20dp" />
+        app:layout_constraintTop_toTopOf="@id/goCalculator"/>
 
+    <Button
+        android:id="@+id/goMemberList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="회원리스트"
+        app:layout_constraintStart_toEndOf="@+id/goCalculator2"
+        app:layout_constraintTop_toTopOf="@id/goCalculator2"/>
 
 </android.support.constraint.ConstraintLayout>
