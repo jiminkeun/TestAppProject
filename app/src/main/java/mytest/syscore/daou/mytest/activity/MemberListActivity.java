@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import mytest.syscore.daou.mytest.R;
 import mytest.syscore.daou.mytest.adapter.MemberInfoAdapter;
 import mytest.syscore.daou.mytest.item.MemberInfo;
@@ -17,6 +19,8 @@ import mytest.syscore.daou.mytest.item.MemberInfo;
 public class MemberListActivity extends AppCompatActivity implements Button.OnClickListener {
 
     SQLiteDatabase db = null;
+    private ListView memberListView = null;
+    private MemberInfoAdapter memAdapter = null;
 
 
     @Override
@@ -24,9 +28,17 @@ public class MemberListActivity extends AppCompatActivity implements Button.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
 
-        ListView memberListView;
-        MemberInfoAdapter memAdapter = new MemberInfoAdapter();
+        ArrayList<MemberInfo> memberList = new ArrayList<MemberInfo>();
+        getMemberDbData(memberList);
 
+        memAdapter = new MemberInfoAdapter(this, R.id.list, memberList);
+        memberListView = (ListView) this.findViewById(R.id.listMember);
+
+
+        getMemberDbData
+
+
+        memAdapter = new MemberInfoAdapter();
         memberListView = (ListView) findViewById(R.id.listMember) ;
         memberListView.setAdapter(memAdapter);
 

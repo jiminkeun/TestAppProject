@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import mytest.syscore.daou.mytest.R;
 import mytest.syscore.daou.mytest.item.MemberInfo;
@@ -16,73 +18,67 @@ import mytest.syscore.daou.mytest.item.MemberInfo;
  * Created by daou on 2017-11-21.
  */
 
-public class MemberInfoAdapter extends BaseAdapter{
-    private ArrayList<MemberInfo> listMember = new ArrayList<MemberInfo>();
+public class MemberInfoAdapter extends ArrayAdapter<MemberInfo>{
+    //private ArrayList<MemberInfo> listMember = new ArrayList<MemberInfo>();
+    private ViewHolder mViewHolder = null;
+    private LayoutInflater mInflater = null;
 
-    public MemberInfoAdapter() {
+    class ViewHolder {
+        public TextView no = null;
+        public TextView name = null;
+        public TextView age = null;
+        public TextView sex = null;
+        public TextView birthday = null;
+        public TextView job = null;
+        public TextView addr = null;
     }
 
-    @Override
-    public int getCount() {
-        return listMember.size();
-    }
+    public MemberInfoAdapter(Context context, int resource, List<MemberInfo> info) {
+        super(context, resource, info);
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return listMember.get(position);
-    }
-
-    // 신규등록
-    public void addItem(int no, String name, int age, String sex, String birthday, String job, String addr) {
-        MemberInfo info = new MemberInfo();
-
-        info.setNo(no);
-        info.setName(name);
-        info.setAge(age);
-        info.setSex(sex);
-        info.setBirthday(birthday);
-        info.setJob(job);
-        info.setAddr(addr);
-
-        listMember.add(info);
+        this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
-        final Context context = parent.getContext();
+        View v = convertView;
 
-        if(convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_member_info, parent, false);
+        if(v == null) {
+            mViewHolder = new ViewHolder();
+            v = mInflater.inflate(R.layout.listview_member_info, null);
+
+            mViewHolder.no = (TextView) v.findViewById(R.id.customMemberNo);
+            mViewHolder.name = (TextView) v.findViewById(R.id.customMemberName);
+            mViewHolder.age = (TextView) v.findViewById(R.id.customMemberAge);
+            mViewHolder.sex = (TextView) v.findViewById(R.id.customMemberSex);
+            mViewHolder.birthday = (TextView) v.findViewById(R.id.customMemberBirthday);
+            mViewHolder.job = (TextView) v.findViewById(R.id.customMemberJob);
+            mViewHolder.addr = (TextView) v.findViewById(R.id.customMemberAddr);
+
+            v.setTag(mViewHolder);
+        }else{
+            mViewHolder = (ViewHolder) v.getTag();
         }
 
-        // 화면 표시
-        TextView no = (TextView) convertView.findViewById(R.id.customMemberNo);
-        TextView name = (TextView) convertView.findViewById(R.id.customMemberName);
-        TextView age = (TextView) convertView.findViewById(R.id.customMemberAge);
-        TextView sex = (TextView) convertView.findViewById(R.id.customMemberSex);
-        TextView birthday = (TextView) convertView.findViewById(R.id.customMemberBirthday);
-        TextView job = (TextView) convertView.findViewById(R.id.customMemberJob);
-        TextView addr = (TextView) convertView.findViewById(R.id.customMemberAddr);
+        mViewHolder.no.setText(getItem(position).getNo());
+        mViewHolder.name.setText(getItem(position).getName());
+        mViewHolder.age.setText(getItem(position).getAge());
+        mViewHolder.sex.setText(getItem(position).getSex());
+        mViewHolder.birthday.setText(getItem(position).getBirthday());
+        mViewHolder.job.setText(getItem(position).getJob());
+        mViewHolder.addr.setText(getItem(position).getAddr());
 
-        MemberInfo memberInfo = listMember.get(position);
-
-        no.setText(memberInfo.getNo());
-        name.setText(memberInfo.getName());
-        age.setText(memberInfo.getAge());
-        sex.setText(memberInfo.getSex());
-        birthday.setText(memberInfo.getBirthday());
-        job.setText(memberInfo.getJob());
-        addr.setText(memberInfo.getAddr());
-
-        return convertView;
+        return v;
     }
 
+    @Override
+    public int getCount() {
+        return super.getCount();
+    }
+
+    @Override
+    public MemberInfo getItem(int position) {
+        return super.getItem(position);
+    }
 
 }

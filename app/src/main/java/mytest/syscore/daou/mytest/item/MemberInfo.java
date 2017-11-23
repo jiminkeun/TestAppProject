@@ -13,31 +13,13 @@ public class MemberInfo {
     private String job;
     private String addr;
 
-    public void setNo(int no) {
+    public MemberInfo(int no, String name, int age, String sex, String birthday, String job, String addr) {
         this.no = no;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public void setAge(int age) {
         this.age = age;
-    }
-
-    public void setSex(String sex) {
         this.sex = sex;
-    }
-
-    public void setBirthday(String birthday) {
         this.birthday = birthday;
-    }
-
-    public void setJob(String job) {
         this.job = job;
-    }
-
-    public void setAddr(String addr) {
         this.addr = addr;
     }
 
@@ -67,5 +49,19 @@ public class MemberInfo {
 
     public String getAddr() {
         return addr;
+    }
+
+    public String[] getMemberInfoArray(){
+        String[] info = {
+                Integer.toString(this.no),
+                this.name,
+                Integer.toString(this.age),
+                this.sex,
+                this.birthday,
+                this.job,
+                this.addr
+        };
+
+        return info;
     }
 }

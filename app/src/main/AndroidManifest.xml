@@ -21,7 +21,8 @@
         <activity android:name=".activity.PushListActivity" />
         <activity android:name=".activity.MemberJoinFormActivity" />
         <activity android:name=".activity.MemberListActivity" />
-        <activity android:name=".activity.PuzzleActivity"></activity>
+        <activity android:name=".activity.PuzzleActivity" />
+        <activity android:name=".activity.MemberMgmtMainActivity"></activity>
     </application>
 
 </manifest>

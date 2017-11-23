@@ -1,15 +1,20 @@
 package mytest.syscore.daou.mytest.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import mytest.syscore.daou.mytest.R;
+import mytest.syscore.daou.mytest.common.DBManager;
+import mytest.syscore.daou.mytest.item.MemberInfo;
+import mytest.syscore.daou.mytest.sqlmap.MemberDBSqlData;
 
 public class MemberJoinFormActivity extends AppCompatActivity implements Button.OnClickListener {
 
@@ -29,6 +34,29 @@ public class MemberJoinFormActivity extends AppCompatActivity implements Button.
 
         Intent intent = null;
 
+        if(memberInsert() != 1) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();       // 닫기
+                }
+            });
+            alert.setMessage("회원등록이 실패하였습니다.");
+            alert.show();
+            return;
+        }else {
+            // 조회 페이지 연결
+            intent = new Intent(this, MemberListActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    // 회원 등록 처리
+    private int memberInsert() {
+
+        int result = 0;
+
         EditText etNo = (EditText) findViewById(R.id.editMemberNo);
         EditText etName = (EditText) findViewById(R.id.editMemberName);
         EditText etAge = (EditText) findViewById(R.id.editMemberAge);
@@ -37,44 +65,14 @@ public class MemberJoinFormActivity extends AppCompatActivity implements Button.
         EditText etJob = (EditText) findViewById(R.id.editMemberJob);
         EditText etAddr = (EditText) findViewById(R.id.editMemberAddr);
 
+        MemberInfo infoData = new MemberInfo(Integer.parseInt(etNo.toString()), etName.toString(), Integer.parseInt(etAge.toString()), etSex.toString(), etBirthday.toString(), etJob.toString(), etAddr.toString());
 
+        DBManager dbMng = new DBManager(this);
+        dbMng.dbOpen();
+        dbMng.insertData(MemberDBSqlData.SQL_DB_INSERT_DATA, infoData);
+        dbMng.dbClose();
 
-        try {
-            // Database 접속
-            db = db_init();
-
-            // 테이블 생성
-            StringBuffer sqlCreateTbl = null;
-            sqlCreateTbl.append(
-                    "CREATE TABLE IF NOT EXIST MEMBER " +
-                            "(NO INTEGER, NAME TEXT, AGE INTEGER, SEX TEXT, BIRTHDAY TEXT, JOB TEXT, ADDR TEXT)"
-            );
-            db_exec(sqlCreateTbl.toString());
-
-            // 데이터 SAVE
-            StringBuffer sqlInsertData = null;
-            sqlInsertData.append(
-                    "INSERT INTO MEMBER (" +
-                            "NO, NAME, AGE, SEX, BIRTHDAY, JOB, ADD" +
-                            ") VALUES (" +
-                            "" + Integer.parseInt(etNo.toString()) + "," +
-                            "'" + etName.toString() + "'," +
-                            "" + Integer.parseInt(etAge.toString()) + "," +
-                            "'" + etSex.toString() + "'," +
-                            "'" + etBirthday.toString() + "'," +
-                            "'" + etJob.toString() + "'," +
-                            "'" + etAddr.toString() + "'" +
-                            ")"
-            );
-            db_exec(sqlInsertData.toString());
-
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
-
-        // 조회 페이지 연결
-        intent = new Intent(this, MemberListActivity.class);
-        startActivity(intent);
+        return result;
     }
 
     // DB 초기화
