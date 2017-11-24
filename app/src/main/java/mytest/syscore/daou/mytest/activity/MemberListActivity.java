@@ -14,7 +14,9 @@ import java.util.ArrayList;
 
 import mytest.syscore.daou.mytest.R;
 import mytest.syscore.daou.mytest.adapter.MemberInfoAdapter;
+import mytest.syscore.daou.mytest.common.DBManager;
 import mytest.syscore.daou.mytest.item.MemberInfo;
+import mytest.syscore.daou.mytest.sqlmap.MemberDBSqlData;
 
 public class MemberListActivity extends AppCompatActivity implements Button.OnClickListener {
 
@@ -31,13 +33,11 @@ public class MemberListActivity extends AppCompatActivity implements Button.OnCl
         ArrayList<MemberInfo> memberList = new ArrayList<MemberInfo>();
         getMemberDbData(memberList);
 
-        memAdapter = new MemberInfoAdapter(this, R.id.list, memberList);
+        memAdapter = new MemberInfoAdapter(this, R.layout.listview_member_info, memberList);
         memberListView = (ListView) this.findViewById(R.id.listMember);
+        memberListView.setAdapter(memAdapter);
 
-
-        getMemberDbData
-
-
+/*
         memAdapter = new MemberInfoAdapter();
         memberListView = (ListView) findViewById(R.id.listMember) ;
         memberListView.setAdapter(memAdapter);
@@ -92,8 +92,15 @@ public class MemberListActivity extends AppCompatActivity implements Button.OnCl
                 String addr = info.getAddr();
             }
         });
+        */
     }
 
+    private void getMemberDbData(ArrayList<MemberInfo> memberList) {
+        DBManager dbMgr = new DBManager(this);
+        dbMgr.dbOpen();
+        dbMgr.selectAll(MemberDBSqlData.SQL_DB_SELECT_ALL, memberList);
+        dbMgr.dbClose();
+    }
 
     @Override
     public void onClick(View v) {
@@ -106,15 +113,15 @@ public class MemberListActivity extends AppCompatActivity implements Button.OnCl
     }
 
     // DB 초기화
-    private SQLiteDatabase db_init() {
+    /*private SQLiteDatabase db_init() {
         SQLiteDatabase dbConnect = SQLiteDatabase.openOrCreateDatabase("myTest.db", null);
         return dbConnect;
-    }
+    }*/
 
     // DB 실행
-    private void db_exec(String sql) {
+   /*private void db_exec(String sql) {
         db.execSQL(sql);
-    }
+    }*/
 }
 
 
